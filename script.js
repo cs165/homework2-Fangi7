@@ -120,6 +120,10 @@ for(let i = 0; i < image.length; i++) {
     }
     //click checkbok
     else if(e.target.className=='checkbox') {
+    //  if(e.target.getAttribute('src')==UNCHECK_URL){
+        e.target.src=CHECK_URL;
+        e.target.parentNode.style.backgroundColor="#cfe3ff";
+  //    }
       ANS[e.target.parentNode.dataset.questionId]= e.target.parentNode.dataset.choiceId;
       if(e.target.parentNode.dataset.questionId =="one") {
         Q1CHECK="T";
@@ -142,13 +146,14 @@ for(let i = 0; i < image.length; i++) {
           if(transpar[j]!=e.target.parentNode)transpar[j].style.opacity = 0.6;
         }
       }
-      if(e.target.getAttribute('src')==UNCHECK_URL){
-        e.target.src=CHECK_URL;
-        e.target.parentNode.style.backgroundColor="#cfe3ff";
-      }
+
      }
     //click dog image
     else{
+    //  if(e.target.parentNode.childNodes[3].getAttribute('src')==UNCHECK_URL){
+        e.target.parentNode.childNodes[3].src=CHECK_URL;
+        e.target.parentNode.style.backgroundColor="#cfe3ff";
+  //    }
       ANS[e.target.parentNode.dataset.questionId]= e.target.parentNode.dataset.choiceId;
       if(e.target.parentNode.dataset.questionId =="one") {
         Q1CHECK="T";
@@ -171,10 +176,7 @@ for(let i = 0; i < image.length; i++) {
           if(transpar[j]!=e.target.parentNode)transpar[j].style.opacity = 0.6;
         }
       }
-      if(e.target.parentNode.childNodes[3].getAttribute('src')==UNCHECK_URL){
-        e.target.parentNode.childNodes[3].src=CHECK_URL;
-        e.target.parentNode.style.backgroundColor="#cfe3ff";
-      }
+
     }
     //check ans are filled
     if(ANS['one']!="" && ANS['two']!="" && ANS['three']!="") getAns();
