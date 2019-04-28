@@ -13,30 +13,27 @@ const MATCH_LIST = {
 function transformTextNodes(node) {
   // TODO(you): Implement this function! See HW spec for details.
   var str = node.innerHTML;
+  var constr = node.textContent;
+  console.log(node.nodeType);
+  console.log(node.nodeName);
   console.log(str);
+  if(node.nodeType!=node.TEXT_NODE) {
+    for(let i=0;i<node.childNodes.length;i++)
+      transformTextNodes(node.childNodes[i]);
+  }
+  if(node.nodeType!=node.TEXT_NODE) return;
 //  var res = str.split(MATCH_LIST['their']).join('their');
   var tokenarr = new Array();
-  tokenarr = str.trim().split(/\s+/);
+  tokenarr = constr.trim().split(/\s+/);
   console.log(tokenarr.length);
   for(var i=0;i<tokenarr.length;i++){
-    console.log("V"+tokenarr[i]+"V");
+    console.log("#"+tokenarr[i]+"#");
 //there to their
     if(tokenarr[i] =="there"){
       console.log(tokenarr[i]+" Match!");
       tokenarr[i]='their';
     }
-    else if (tokenarr[i].match(">there")){
-      console.log(tokenarr[i]+" Match!");
-      var tmp =tokenarr[i].toString();
-      tmp.replace(">there",">their");
-      tokenarr[i] = tmp;
-    }
-    else if (tokenarr[i].match("there<")){
-      console.log(tokenarr[i]+" Match!");
-      var tmp =tokenarr[i].toString();
-      tmp.toString().replace("there<","their<");
-      tokenarr[i] = tmp;
-    }
+
     //their to there
     else if (tokenarr[i] == "their"){
       console.log(tokenarr[i]+" Match!");
@@ -78,7 +75,7 @@ function transformTextNodes(node) {
   res = tokenarr.join(" ");
   console.log(res);
 
-  node.innerHTML = res;
+  node.textContent = res+" ";
 
 }
 
